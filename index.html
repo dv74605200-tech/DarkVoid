@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DarkVoid SMP</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#08060d;color:#fff;line-height:1.6}
+nav{position:sticky;top:0;z-index:10;background:#0d0916ee;backdrop-filter:blur(10px);padding:16px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #6f20ff55}
+.logo{font-size:24px;font-weight:900;color:#a855f7}.links a{color:#ddd;text-decoration:none;margin-left:22px}.links a:hover{color:#b66cff}
+.hero{text-align:center;padding:110px 20px;background:radial-gradient(circle at center,#421080 0,#12091c 35%,#08060d 70%)}
+.hero h1{font-size:clamp(48px,10vw,90px);letter-spacing:3px;text-shadow:0 0 25px #9b4dff}.hero p{color:#cfc4da;font-size:20px;margin:12px 0 28px}
+.btn{display:inline-block;background:#8b3dff;color:#fff;text-decoration:none;padding:13px 24px;border-radius:10px;font-weight:bold;box-shadow:0 0 22px #8b3dff66}.btn:hover{background:#a45cff}
+section{padding:70px 7%;max-width:1100px;margin:auto}h2{text-align:center;font-size:34px;margin-bottom:28px;color:#c084fc}
+.card{background:#110b1b;border:1px solid #6f20ff55;border-radius:16px;padding:24px;margin:12px 0;box-shadow:0 8px 30px #0005}
+.ip{font-family:monospace;font-size:20px;color:#d8b4fe;word-break:break-all}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+footer{text-align:center;padding:30px;color:#8f829d;border-top:1px solid #6f20ff33}
+.status{color:#9effb2;font-weight:bold}
+</style>
+</head>
+<body>
+<nav><div class="logo">⚔ DARKVOID SMP</div><div class="links">
+<a href="#home">Home</a><a href="#rules">Rules</a><a href="#staff">Staff</a>
+</div></nav>
+
+<header class="hero" id="home">
+<h1>DARKVOID SMP</h1>
+<p>Enter the Void. Build. Fight. Survive.</p>
+<a class="btn" href="#server">JOIN SERVER</a>
+</header>
+
+<section id="server">
+<h2>⚔ Server</h2>
+<div class="card" style="text-align:center">
+<p class="status">● SERVER IP</p>
+<p class="ip" id="ip">2darkvoid2.play.hosting</p>
+<br>
+<button class="btn" onclick="copyIP()">COPY IP</button>
+<p id="copied" style="color:#c084fc;margin-top:10px"></p>
+</div>
+</section>
+
+<section id="rules">
+<h2>📜 Rules</h2>
+<div class="grid">
+<div class="card"><b>1. No Cheating</b><p>Hacks, unfair clients and exploits are not allowed.</p></div>
+<div class="card"><b>2. Respect Players</b><p>No harassment, threats or unnecessary toxicity.</p></div>
+<div class="card"><b>3. No Griefing</b><p>Don't destroy or steal from other players without permission.</p></div>
+<div class="card"><b>4. Follow Staff</b><p>Staff decisions must be respected.</p></div>
+</div>
+</section>
+
+<section id="staff">
+<h2>👑 Staff</h2>
+<div class="grid">
+<div class="card"><h3>Owner</h3><p>DarkVoid</p></div>
+<div class="card"><h3>Staff</h3><p>Coming Soon...</p></div>
+</div>
+</section>
+
+<footer>© 2026 DarkVoid SMP • Enter the Void</footer>
+<script>
+function copyIP(){
+navigator.clipboard.writeText("2darkvoid2.play.hosting");
+document.getElementById("copied").textContent="IP copied! 🔥";
+}
+</script>
+</body>
+</html>
