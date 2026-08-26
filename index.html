@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>DarkVoid Network</title>
 
 <style>
@@ -14,42 +13,39 @@
     font-family:Arial,Helvetica,sans-serif;
 }
 
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
     background:#050000;
-    color:white;
+    color:#fff;
     overflow-x:hidden;
 }
 
-/* ===== BACKGROUND ===== */
+.hidden{display:none!important}
+
+/* ================= BACKGROUND ================= */
 
 .hero{
     min-height:100vh;
     position:relative;
     overflow:hidden;
     background:
-        radial-gradient(circle at 50% 25%,#3b0000 0%,#160000 28%,#070000 65%,#020000 100%);
+    radial-gradient(circle at 50% 25%,#3b0000 0%,#160000 28%,#070000 65%,#020000 100%);
 }
 
-/* Moon */
 .moon{
     position:absolute;
     width:230px;
     height:230px;
     border-radius:50%;
     right:12%;
-    top:90px;
+    top:100px;
     background:#eee;
-    box-shadow:
-        0 0 25px #fff,
-        0 0 70px rgba(255,40,40,.35);
+    box-shadow:0 0 25px #fff,0 0 70px rgba(255,40,40,.35);
     opacity:.9;
+    animation:moonGlow 4s infinite alternate;
 }
 
-/* Moon shadow */
 .moon:after{
     content:"";
     position:absolute;
@@ -61,7 +57,13 @@ body{
     top:-20px;
 }
 
-/* Demon silhouette */
+@keyframes moonGlow{
+    from{box-shadow:0 0 20px #fff,0 0 50px rgba(255,0,0,.2)}
+    to{box-shadow:0 0 35px #fff,0 0 90px rgba(255,0,0,.45)}
+}
+
+/* ================= DEMON ================= */
+
 .demon{
     position:absolute;
     bottom:-20px;
@@ -80,7 +82,6 @@ body{
     border-radius:48% 48% 42% 42%;
     top:100px;
     left:105px;
-    box-shadow:0 0 40px rgba(255,0,0,.15);
 }
 
 .demon .horn{
@@ -136,7 +137,6 @@ body{
     );
 }
 
-/* Red fog */
 .fog{
     position:absolute;
     width:700px;
@@ -152,7 +152,7 @@ body{
     filter:blur(30px);
 }
 
-/* ===== NAVBAR ===== */
+/* ================= NAV ================= */
 
 nav{
     position:relative;
@@ -191,7 +191,7 @@ nav a:hover{
     text-shadow:0 0 10px red;
 }
 
-/* ===== HERO CONTENT ===== */
+/* ================= HERO ================= */
 
 .hero-content{
     position:relative;
@@ -225,9 +225,7 @@ h1{
 
 h1 span{
     color:#ff1616;
-    text-shadow:
-        0 0 15px red,
-        0 0 45px rgba(255,0,0,.5);
+    text-shadow:0 0 15px red,0 0 45px rgba(255,0,0,.5);
 }
 
 .subtitle{
@@ -270,81 +268,270 @@ h1 span{
     box-shadow:none;
 }
 
-.btn.secondary:hover{
-    background:rgba(150,0,0,.2);
+/* ================= STORE ================= */
+
+.store-page{
+    min-height:100vh;
+    background:
+    radial-gradient(circle at 50% 0%,#260000,#070000 55%);
 }
 
-/* ===== SERVER INFO ===== */
-
-.info{
-    position:relative;
-    z-index:5;
-    padding:80px 7%;
-    background:#030000;
-}
-
-.section-title{
-    text-align:center;
-    font-size:35px;
-    margin-bottom:40px;
-}
-
-.section-title span{
-    color:#ff2222;
-}
-
-.cards{
+.store-wrap{
     max-width:1100px;
     margin:auto;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
+    padding:45px 20px 70px;
 }
 
-.card{
-    background:linear-gradient(
-        145deg,
-        rgba(100,0,0,.25),
-        rgba(20,0,0,.5)
-    );
-    border:1px solid rgba(255,0,0,.2);
-    padding:30px;
-    border-radius:15px;
+.store-head{
     text-align:center;
-    transition:.3s;
+    margin-bottom:30px;
 }
 
-.card:hover{
-    transform:translateY(-8px);
+.store-head h2{
+    font-size:42px;
+}
+
+.red{
+    color:#ff2222;
+    text-shadow:0 0 15px red;
+}
+
+.store-head p{
+    color:#888;
+    margin-top:8px;
+}
+
+.tabs{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:22px;
+}
+
+.tab{
+    padding:15px;
+    border:1px solid rgba(255,0,0,.2);
+    background:#100303;
+    color:#aaa;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.tab:hover,.tab.active{
+    color:#fff;
+    border-color:#e00000;
+    background:#260505;
+    box-shadow:0 0 20px rgba(255,0,0,.15);
+}
+
+.panel{
+    background:rgba(10,0,0,.88);
+    border:1px solid rgba(255,0,0,.2);
+    border-radius:15px;
+    padding:25px;
+}
+
+.panel h3{
+    margin-bottom:18px;
+    font-size:23px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.product{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:16px;
+    border-radius:11px;
+    background:rgba(80,0,0,.13);
+    border:1px solid rgba(255,0,0,.12);
+    transition:.2s;
+}
+
+.product:hover{
+    transform:translateY(-2px);
+    border-color:#d00000;
+    box-shadow:0 8px 25px rgba(255,0,0,.12);
+}
+
+.name{
+    font-weight:bold;
+}
+
+.price{
+    color:#ff4040;
+    margin-top:5px;
+    font-weight:bold;
+}
+
+.not-sale{
+    color:#666;
+    font-size:12px;
+    margin-top:5px;
+}
+
+.buy{
+    border:0;
+    background:#d90000;
+    color:#fff;
+    padding:10px 16px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.buy:hover{
+    background:#ff1111;
+}
+
+.disabled{
+    background:#292020;
+    color:#666;
+    cursor:not-allowed;
+}
+
+/* ================= INFO ================= */
+
+.info-box{
+    text-align:center;
+    padding:45px 15px;
+}
+
+.info-box .big-icon{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.info-box p{
+    color:#888;
+    margin:10px 0 22px;
+}
+
+.ip-box{
+    display:inline-block;
+    padding:13px 20px;
+    border-radius:8px;
+    background:#080000;
+    border:1px solid rgba(255,0,0,.3);
+    color:#ff5555;
+    font-weight:bold;
+    margin-bottom:18px;
+}
+
+/* ================= BILLING ================= */
+
+.billing-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:25px;
+    background:
+    radial-gradient(circle at 50% 0%,#300000,#050000 60%);
+}
+
+.billing-box{
+    width:100%;
+    max-width:480px;
+    background:#0d0000;
+    border:1px solid rgba(255,0,0,.35);
+    border-radius:16px;
+    padding:30px;
+    box-shadow:0 20px 60px rgba(255,0,0,.12);
+}
+
+.billing-box h2{
+    font-size:28px;
+}
+
+.selected{
+    color:#ff4545;
+    font-weight:bold;
+    margin:8px 0 25px;
+}
+
+label{
+    display:block;
+    color:#aaa;
+    font-size:13px;
+    margin-bottom:7px;
+}
+
+input,select{
+    width:100%;
+    padding:14px;
+    margin-bottom:18px;
+    border:1px solid #351010;
+    border-radius:8px;
+    background:#070000;
+    color:#fff;
+    outline:none;
+}
+
+input:focus,select:focus{
     border-color:#ff2222;
-    box-shadow:0 15px 40px rgba(255,0,0,.15);
 }
 
-.card h3{
-    color:#ff3030;
-    margin-bottom:12px;
+.full{
+    width:100%;
 }
 
-.card p{
-    color:#999;
-    font-size:14px;
+.success{
+    display:none;
+    margin-top:18px;
+    padding:14px;
+    border-radius:8px;
+    background:rgba(0,100,0,.12);
+    border:1px solid rgba(0,255,0,.2);
+    color:#8aff8a;
+    line-height:1.6;
 }
 
-/* ===== FOOTER ===== */
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#180000;
+    border:1px solid #a00000;
+    padding:14px 18px;
+    border-radius:8px;
+    transform:translateY(100px);
+    opacity:0;
+    transition:.3s;
+    z-index:100;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+/* ================= FOOTER ================= */
 
 footer{
     text-align:center;
-    padding:30px;
-    color:#666;
-    background:#010000;
+    padding:28px;
+    background:#020000;
     border-top:1px solid rgba(255,0,0,.15);
+    color:#555;
+    font-size:12px;
 }
 
 footer span{
     color:#e11;
 }
 
-/* ===== MOBILE ===== */
+/* ================= MOBILE ================= */
 
 @media(max-width:700px){
 
@@ -379,16 +566,20 @@ footer span{
         letter-spacing:-3px;
     }
 
-    .subtitle{
-        font-size:13px;
+    .tabs{
+        grid-template-columns:1fr 1fr;
     }
 
-    .cards{
+    .products{
         grid-template-columns:1fr;
     }
 
-    .info{
-        padding:60px 20px;
+    .store-wrap{
+        padding:30px 15px 50px;
+    }
+
+    .store-head h2{
+        font-size:32px;
     }
 }
 </style>
@@ -396,39 +587,46 @@ footer span{
 
 <body>
 
-<section class="hero">
+
+<!-- =====================================================
+     HOME PAGE
+===================================================== -->
+
+<section id="homePage" class="hero">
 
     <div class="moon"></div>
 
     <div class="demon">
         <div class="horn left"></div>
         <div class="horn right"></div>
-
         <div class="head"></div>
-
         <div class="eye left"></div>
         <div class="eye right"></div>
-
         <div class="body"></div>
     </div>
 
     <div class="fog"></div>
 
     <nav>
+
         <div class="logo">
             DARK<span>VOID</span>
         </div>
 
         <div>
-            <a href="#home">HOME</a>
-            <a href="#server">SERVER</a>
+            <a href="#homePage">HOME</a>
+            <a href="#serverInfo">SERVER</a>
             <a href="#about">ABOUT</a>
         </div>
+
     </nav>
 
-    <div class="hero-content" id="home">
 
-        <div class="badge">☠ DARKVOID NETWORK ☠</div>
+    <div class="hero-content">
+
+        <div class="badge">
+            ☠ DARKVOID NETWORK ☠
+        </div>
 
         <h1>
             ENTER THE<br>
@@ -454,448 +652,44 @@ footer span{
         </div>
 
     </div>
-</section>}
 
-/* HOME */
+</section>
 
-.hero{
-    min-height:calc(100vh - 72px);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:40px 20px;
-}
 
-.hero-content{
-    max-width:850px;
-}
+<!-- =====================================================
+     SERVER INFO
+===================================================== -->
 
-.badge{
-    display:inline-flex;
-    padding:8px 15px;
-    border:1px solid var(--border);
-    background:rgba(139,92,246,.08);
-    color:#c4b5fd;
-    border-radius:30px;
-    font-size:13px;
-    font-weight:600;
-    margin-bottom:22px;
-}
+<section id="serverInfo" class="info">
 
-.hero h1{
-    font-size:clamp(50px,12vw,100px);
-    line-height:.95;
-    font-weight:900;
-    letter-spacing:-4px;
-}
+    <h2 class="section-title">
+        DARK<span>VOID</span> SERVER
+    </h2>
 
-.gradient{
-    background:linear-gradient(90deg,#fff,#c084fc,#8b5cf6);
-    -webkit-background-clip:text;
-    color:transparent;
-}
+    <div class="cards">
 
-.hero p{
-    color:var(--muted);
-    max-width:600px;
-    margin:22px auto 32px;
-    line-height:1.7;
-    font-size:16px;
-}
-
-.primary-btn{
-    border:0;
-    padding:15px 28px;
-    border-radius:12px;
-    color:white;
-    background:linear-gradient(135deg,#7c3aed,#a855f7);
-    font-weight:800;
-    cursor:pointer;
-    box-shadow:0 10px 35px rgba(139,92,246,.25);
-    transition:.2s;
-}
-
-.primary-btn:hover{
-    transform:translateY(-3px);
-    box-shadow:0 15px 45px rgba(139,92,246,.4);
-}
-
-/* STORE */
-
-.store{
-    max-width:1100px;
-    margin:auto;
-    padding:45px 20px 60px;
-}
-
-.store-heading{
-    margin-bottom:30px;
-}
-
-.store-heading h1{
-    font-size:38px;
-    font-weight:900;
-}
-
-.store-heading p{
-    color:var(--muted);
-    margin-top:8px;
-}
-
-.tabs{
-    display:flex;
-    gap:10px;
-    overflow-x:auto;
-    margin-bottom:22px;
-}
-
-.tab{
-    flex:1;
-    min-width:130px;
-    padding:14px;
-    border-radius:11px;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:#aaa;
-    cursor:pointer;
-    font-weight:700;
-    transition:.2s;
-}
-
-.tab:hover,
-.tab.active{
-    color:white;
-    border-color:rgba(168,85,247,.55);
-    background:rgba(139,92,246,.12);
-}
-
-/* PRODUCTS */
-
-.panel{
-    background:rgba(13,13,20,.82);
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:25px;
-    box-shadow:0 20px 60px rgba(0,0,0,.2);
-}
-
-.panel-title{
-    font-size:21px;
-    margin-bottom:18px;
-}
-
-.products{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-}
-
-.product{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-    padding:17px;
-    border-radius:13px;
-    background:rgba(255,255,255,.025);
-    border:1px solid rgba(255,255,255,.055);
-    transition:.2s;
-}
-
-.product:hover{
-    border-color:rgba(139,92,246,.4);
-    transform:translateY(-2px);
-    background:rgba(139,92,246,.045);
-}
-
-.product-left{
-    display:flex;
-    align-items:center;
-    gap:13px;
-}
-
-.icon{
-    width:43px;
-    height:43px;
-    border-radius:11px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(139,92,246,.12);
-    font-size:20px;
-}
-
-.product-name{
-    font-weight:700;
-}
-
-.price{
-    color:#c084fc;
-    font-weight:800;
-    margin-top:5px;
-    font-size:14px;
-}
-
-.unavailable{
-    color:#666;
-    font-size:12px;
-    margin-top:5px;
-}
-
-.buy{
-    border:0;
-    background:#7c3aed;
-    color:white;
-    padding:10px 15px;
-    border-radius:9px;
-    font-weight:700;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.buy:hover{
-    background:#9333ea;
-}
-
-.buy.disabled{
-    background:#25252c;
-    color:#666;
-    cursor:not-allowed;
-}
-
-/* INFO */
-
-.info{
-    text-align:center;
-    padding:45px 20px;
-}
-
-.info-icon{
-    font-size:45px;
-    margin-bottom:15px;
-}
-
-.info h2{
-    margin-bottom:8px;
-}
-
-.info p{
-    color:var(--muted);
-    margin-bottom:22px;
-}
-
-.ip{
-    display:inline-block;
-    padding:13px 18px;
-    border:1px solid var(--border);
-    background:#08080d;
-    border-radius:10px;
-    color:#c4b5fd;
-    font-weight:700;
-    margin-bottom:15px;
-}
-
-/* BILLING */
-
-.billing-page{
-    min-height:calc(100vh - 72px);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:30px 20px;
-}
-
-.billing{
-    width:100%;
-    max-width:480px;
-    padding:30px;
-    background:rgba(13,13,20,.9);
-    border:1px solid var(--border);
-    border-radius:20px;
-    box-shadow:0 25px 80px rgba(0,0,0,.4);
-}
-
-.billing h1{
-    font-size:28px;
-}
-
-.selected{
-    margin:8px 0 25px;
-    color:#c084fc;
-    font-weight:700;
-}
-
-label{
-    display:block;
-    color:#aaa;
-    font-size:13px;
-    margin-bottom:7px;
-}
-
-input,
-select{
-    width:100%;
-    padding:14px;
-    margin-bottom:18px;
-    background:#08080d;
-    color:white;
-    border:1px solid #29232f;
-    border-radius:10px;
-    outline:none;
-}
-
-input:focus,
-select:focus{
-    border-color:#8b5cf6;
-}
-
-.full-btn{
-    width:100%;
-}
-
-.success{
-    display:none;
-    margin-top:16px;
-    padding:14px;
-    border-radius:10px;
-    background:rgba(34,197,94,.08);
-    border:1px solid rgba(34,197,94,.25);
-    color:#86efac;
-    line-height:1.6;
-}
-
-/* FOOTER */
-
-.footer{
-    text-align:center;
-    padding:30px 20px;
-    border-top:1px solid var(--border);
-    color:#555;
-    font-size:12px;
-}
-
-/* TOAST */
-
-.toast{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    padding:13px 18px;
-    background:#17131d;
-    border:1px solid #4c2a65;
-    border-radius:10px;
-    color:white;
-    transform:translateY(100px);
-    opacity:0;
-    transition:.3s;
-    z-index:100;
-}
-
-.toast.show{
-    transform:translateY(0);
-    opacity:1;
-}
-
-/* MOBILE */
-
-@media(max-width:700px){
-
-    .navbar{
-        padding:0 20px;
-    }
-
-    .nav-status{
-        display:none;
-    }
-
-    .hero h1{
-        letter-spacing:-2px;
-    }
-
-    .store{
-        padding:30px 15px;
-    }
-
-    .store-heading h1{
-        font-size:31px;
-    }
-
-    .products{
-        grid-template-columns:1fr;
-    }
-
-    .panel{
-        padding:17px;
-    }
-
-    .product{
-        padding:14px;
-    }
-
-    .product-left{
-        min-width:0;
-    }
-
-    .product-name{
-        font-size:14px;
-    }
-
-    .buy{
-        padding:9px 12px;
-    }
-
-}
-</style>
-</head>
-
-<body>
-
-<!-- NAVBAR -->
-
-<nav class="navbar">
-
-    <div class="brand">
-        DARK<span>VOID</span>
-    </div>
-
-    <div class="nav-status">
-        <span class="dot"></span>
-        Network Online
-    </div>
-
-</nav>
-
-
-<!-- HOME -->
-
-<section id="home">
-
-    <div class="hero">
-
-        <div class="hero-content">
-
-            <div class="badge">
-                ⚡ DARKVOID NETWORK
-            </div>
-
-            <h1>
-                ENTER THE<br>
-                <span class="gradient">VOID.</span>
-            </h1>
-
+        <div class="card">
+            <h3>⚔ RANKS</h3>
             <p>
-                Welcome to DarkVoid Network.
-                Explore our ranks, crate keys and
-                join the community.
+                Unlock exclusive server ranks
+                and stand above the rest.
             </p>
+        </div>
 
-            <button
-                class="primary-btn"
-                onclick="openStore()">
-                JOIN SERVER →
-            </button>
+        <div class="card">
+            <h3>🔑 CRATE KEYS</h3>
+            <p>
+                Get powerful crate keys
+                and discover amazing rewards.
+            </p>
+        </div>
 
+        <div class="card">
+            <h3>☠ COMMUNITY</h3>
+            <p>
+                Join the DarkVoid community
+                and stay connected.
+            </p>
         </div>
 
     </div>
@@ -903,18 +697,74 @@ select:focus{
 </section>
 
 
-<!-- STORE -->
+<section id="about" class="info">
 
-<section id="store" class="hidden">
+    <h2 class="section-title">
+        ABOUT <span>DARKVOID</span>
+    </h2>
 
-    <div class="store">
+    <div class="cards">
 
-        <div class="store-heading">
+        <div class="card">
+            <h3>🌑 DARK</h3>
+            <p>
+                A unique dark-themed Minecraft
+                network built for the community.
+            </p>
+        </div>
 
-            <h1>DarkVoid Store</h1>
+        <div class="card">
+            <h3>🔥 POWER</h3>
+            <p>
+                Build your legacy, climb the ranks
+                and become part of the Void.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>👑 LEGACY</h3>
+            <p>
+                Your journey starts here.
+                Welcome to DarkVoid.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     STORE PAGE
+===================================================== -->
+
+<section id="storePage" class="store-page hidden">
+
+    <nav>
+
+        <div class="logo">
+            DARK<span>VOID</span>
+        </div>
+
+        <div>
+            <a href="javascript:showStoreTab('ranks')">STORE</a>
+            <a href="javascript:showStoreTab('discord')">DISCORD</a>
+            <a href="javascript:showStoreTab('ip')">IP</a>
+        </div>
+
+    </nav>
+
+
+    <div class="store-wrap">
+
+        <div class="store-head">
+
+            <h2>
+                DARK<span class="red">VOID</span> STORE
+            </h2>
 
             <p>
-                Upgrade your experience and support the network.
+                Choose your upgrade and enter the Void.
             </p>
 
         </div>
@@ -923,27 +773,31 @@ select:focus{
         <div class="tabs">
 
             <button
+                id="tabRanks"
                 class="tab active"
-                onclick="showTab('ranks',this)">
-                🏆 Ranks
+                onclick="showStoreTab('ranks')">
+                🏆 RANKS
             </button>
 
             <button
+                id="tabKeys"
                 class="tab"
-                onclick="showTab('keys',this)">
-                🔑 Crate Keys
+                onclick="showStoreTab('keys')">
+                🔑 CRATE KEYS
             </button>
 
             <button
+                id="tabDiscord"
                 class="tab"
-                onclick="showTab('discord',this)">
-                💬 Discord
+                onclick="showStoreTab('discord')">
+                💬 DISCORD
             </button>
 
             <button
+                id="tabIP"
                 class="tab"
-                onclick="showTab('ip',this)">
-                🌐 Server IP
+                onclick="showStoreTab('ip')">
+                🌐 IP
             </button>
 
         </div>
@@ -951,99 +805,106 @@ select:focus{
 
         <!-- RANKS -->
 
-        <div id="ranks" class="panel">
+        <div id="ranksPanel" class="panel">
 
-            <h2 class="panel-title">
-                Server Ranks
-            </h2>
+            <h3>🏆 SERVER RANKS</h3>
 
             <div class="products">
 
+
                 <div class="product">
-                    <div class="product-left">
-                        <div class="icon">👑</div>
-                        <div>
-                            <div class="product-name">OWNER</div>
-                            <div class="unavailable">Not for sale</div>
+
+                    <div>
+                        <div class="name">OWNER</div>
+                        <div class="not-sale">
+                            Not for sale
                         </div>
                     </div>
+
                     <button class="buy disabled" disabled>
                         N/A
                     </button>
+
                 </div>
 
 
                 <div class="product">
-                    <div class="product-left">
-                        <div class="icon">🛡️</div>
-                        <div>
-                            <div class="product-name">ADMIN</div>
-                            <div class="unavailable">Not for sale</div>
+
+                    <div>
+                        <div class="name">ADMIN</div>
+                        <div class="not-sale">
+                            Not for sale
                         </div>
                     </div>
+
                     <button class="buy disabled" disabled>
                         N/A
                     </button>
+
                 </div>
 
 
                 <div class="product">
-                    <div class="product-left">
-                        <div class="icon">⚔️</div>
-                        <div>
-                            <div class="product-name">MODERATOR</div>
-                            <div class="price">₹120</div>
-                        </div>
+
+                    <div>
+                        <div class="name">MODERATOR</div>
+                        <div class="price">₹120</div>
                     </div>
-                    <button class="buy"
-                        onclick="billing('MODERATOR',120)">
+
+                    <button
+                        class="buy"
+                        onclick="openBilling('MODERATOR',120)">
                         BUY
                     </button>
+
                 </div>
 
 
                 <div class="product">
-                    <div class="product-left">
-                        <div class="icon">💻</div>
-                        <div>
-                            <div class="product-name">DEVELOPER</div>
-                            <div class="price">₹100</div>
-                        </div>
+
+                    <div>
+                        <div class="name">DEVELOPER</div>
+                        <div class="price">₹100</div>
                     </div>
-                    <button class="buy"
-                        onclick="billing('DEVELOPER',100)">
+
+                    <button
+                        class="buy"
+                        onclick="openBilling('DEVELOPER',100)">
                         BUY
                     </button>
+
                 </div>
 
 
                 <div class="product">
-                    <div class="product-left">
-                        <div class="icon">🎥</div>
-                        <div>
-                            <div class="product-name">MEDIA</div>
-                            <div class="price">₹80</div>
-                        </div>
+
+                    <div>
+                        <div class="name">MEDIA</div>
+                        <div class="price">₹80</div>
                     </div>
-                    <button class="buy"
-                        onclick="billing('MEDIA',80)">
+
+                    <button
+                        class="buy"
+                        onclick="openBilling('MEDIA',80)">
                         BUY
                     </button>
+
                 </div>
 
 
                 <div class="product">
-                    <div class="product-left">
-                        <div class="icon">⭐</div>
-                        <div>
-                            <div class="product-name">HELPER</div>
-                            <div class="price">₹60</div>
-                        </div>
+
+                    <div>
+                        <div class="name">HELPER</div>
+                        <div class="price">₹60</div>
                     </div>
-                    <button class="buy"
-                        onclick="billing('HELPER',60)">
+
+                    <button
+                        class="buy"
+                        onclick="openBilling('HELPER',60)">
                         BUY
                     </button>
+
                 </div>
 
             </div>
@@ -1053,114 +914,106 @@ select:focus{
 
         <!-- KEYS -->
 
-        <div id="keys" class="panel hidden">
+        <div id="keysPanel" class="panel hidden">
 
-            <h2 class="panel-title">
-                Crate Keys
-            </h2>
+            <h3>🔑 CRATE KEYS</h3>
 
             <div class="products">
 
+
                 <div class="product">
-                    <div class="product-left">
-                        <div class="icon">🔮</div>
-                        <div>
-                            <div class="product-name">DarkVoid KEY</div>
-                            <div class="price">₹100</div>
-                        </div>
+                    <div>
+                        <div class="name">DarkVoid KEY</div>
+                        <div class="price">₹100</div>
                     </div>
-                    <button class="buy"
-                        onclick="billing('DarkVoid KEY',100)">
+
+                    <button
+                        class="buy"
+                        onclick="openBilling('DarkVoid KEY',100)">
                         BUY
                     </button>
                 </div>
 
 
                 <div class="product">
-                    <div class="product-left">
-                        <div class="icon">🖤</div>
-                        <div>
-                            <div class="product-name">OBSIDIAN KEY</div>
-                            <div class="price">₹90</div>
-                        </div>
+                    <div>
+                        <div class="name">OBSIDIAN KEY</div>
+                        <div class="price">₹90</div>
                     </div>
-                    <button class="buy"
-                        onclick="billing('OBSIDIAN KEY',90)">
+
+                    <button
+                        class="buy"
+                        onclick="openBilling('OBSIDIAN KEY',90)">
                         BUY
                     </button>
                 </div>
 
 
                 <div class="product">
-                    <div class="product-left">
-                        <div class="icon">💎</div>
-                        <div>
-                            <div class="product-name">LEGENDARY KEY</div>
-                            <div class="price">₹85</div>
-                        </div>
+                    <div>
+                        <div class="name">LEGENDARY KEY</div>
+                        <div class="price">₹85</div>
                     </div>
-                    <button class="buy"
-                        onclick="billing('LEGENDARY KEY',85)">
+
+                    <button
+                        class="buy"
+                        onclick="openBilling('LEGENDARY KEY',85)">
                         BUY
                     </button>
                 </div>
 
 
                 <div class="product">
-                    <div class="product-left">
-                        <div class="icon">🔥</div>
-                        <div>
-                            <div class="product-name">EPIC KEY</div>
-                            <div class="price">₹70</div>
-                        </div>
+                    <div>
+                        <div class="name">EPIC KEY</div>
+                        <div class="price">₹70</div>
                     </div>
-                    <button class="buy"
-                        onclick="billing('EPIC KEY',70)">
+
+                    <button
+                        class="buy"
+                        onclick="openBilling('EPIC KEY',70)">
                         BUY
                     </button>
                 </div>
 
 
                 <div class="product">
-                    <div class="product-left">
-                        <div class="icon">⚡</div>
-                        <div>
-                            <div class="product-name">PRO KEY</div>
-                            <div class="price">₹60</div>
-                        </div>
+                    <div>
+                        <div class="name">PRO KEY</div>
+                        <div class="price">₹60</div>
                     </div>
-                    <button class="buy"
-                        onclick="billing('PRO KEY',60)">
+
+                    <button
+                        class="buy"
+                        onclick="openBilling('PRO KEY',60)">
                         BUY
                     </button>
                 </div>
 
 
                 <div class="product">
-                    <div class="product-left">
-                        <div class="icon">⬛</div>
-                        <div>
-                            <div class="product-name">NETHERITE KEY</div>
-                            <div class="price">₹55</div>
-                        </div>
+                    <div>
+                        <div class="name">NETHERITE KEY</div>
+                        <div class="price">₹55</div>
                     </div>
-                    <button class="buy"
-                        onclick="billing('NETHERITE KEY',55)">
+
+                    <button
+                        class="buy"
+                        onclick="openBilling('NETHERITE KEY',55)">
                         BUY
                     </button>
                 </div>
 
 
                 <div class="product">
-                    <div class="product-left">
-                        <div class="icon">💠</div>
-                        <div>
-                            <div class="product-name">DIAMOND KEY</div>
-                            <div class="price">₹50</div>
-                        </div>
+                    <div>
+                        <div class="name">DIAMOND KEY</div>
+                        <div class="price">₹50</div>
                     </div>
-                    <button class="buy"
-                        onclick="billing('DIAMOND KEY',50)">
+
+                    <button
+                        class="buy"
+                        onclick="openBilling('DIAMOND KEY',50)">
                         BUY
                     </button>
                 </div>
@@ -1172,54 +1025,58 @@ select:focus{
 
         <!-- DISCORD -->
 
-        <div id="discord" class="panel hidden">
+        <div id="discordPanel" class="panel hidden">
 
-            <div class="info">
+            <div class="info-box">
+                                <div class="info-box">
 
-                <div class="info-icon">💬</div>
+                    <div class="big-icon">💬</div>
 
-                <h2>Join our Discord</h2>
+                    <h3>JOIN OUR DISCORD</h3>
 
-                <p>
-                    Chat with the community and stay updated.
-                </p>
+                    <p>
+                        Join the DarkVoid community for updates,
+                        support and server announcements.
+                    </p>
 
-                <button
-                    class="primary-btn"
-                    onclick="openDiscord()">
-                    JOIN DISCORD
-                </button>
+                    <button
+                        class="btn"
+                        onclick="openDiscord()">
+                        JOIN DISCORD →
+                    </button>
+
+                </div>
 
             </div>
 
-        </div>
 
+            <!-- IP -->
 
-        <!-- IP -->
+            <div id="ipPanel" class="panel hidden">
 
-        <div id="ip" class="panel hidden">
+                <div class="info-box">
 
-            <div class="info">
+                    <div class="big-icon">🌐</div>
 
-                <div class="info-icon">🌐</div>
+                    <h3>DARKVOID SERVER IP</h3>
 
-                <h2>Server IP</h2>
+                    <p>
+                        Copy the server address and join the Void.
+                    </p>
 
-                <p>
-                    Click below to copy the server address.
-                </p>
+                    <div class="ip-box" id="serverIP">
+                        DarkVoid2.play.hosting
+                    </div>
 
-                <div class="ip" id="serverIP">
-                    play.darkvoid.net
+                    <br>
+
+                    <button
+                        class="btn"
+                        onclick="copyIP()">
+                        COPY IP
+                    </button>
+
                 </div>
-
-                <br>
-
-                <button
-                    class="primary-btn"
-                    onclick="copyIP()">
-                    COPY IP
-                </button>
 
             </div>
 
@@ -1227,121 +1084,154 @@ select:focus{
 
     </div>
 
-
-    <footer class="footer">
-        © 2026 DarkVoid Network. All rights reserved.
-    </footer>
-
 </section>
 
 
-<!-- BILLING -->
+<!-- =====================================================
+     BILLING PAGE
+===================================================== -->
 
 <section id="billingPage" class="billing-page hidden">
 
-    <div class="billing">
+    <div class="billing-box">
 
-        <h1>Billing Counter</h1>
+        <h2>VOID <span class="red">CHECKOUT</span></h2>
 
-        <div id="selected" class="selected">
-            Product
+        <div id="selectedProduct" class="selected">
+            Selected Item
         </div>
 
 
         <label>
-            In-game Name
+            Minecraft Username
         </label>
 
         <input
-            id="ign"
             type="text"
-            placeholder="Enter your Minecraft IGN">
+            id="minecraftName"
+            placeholder="Enter your in-game name"
+            autocomplete="off"
+        >
 
 
         <label>
             Payment Method
         </label>
 
-        <select id="payment">
+        <select id="paymentMethod">
 
             <option value="">
-                Select payment method
+                Select Payment Method
             </option>
 
-            <option>UPI</option>
-            <option>Google Pay</option>
-            <option>PhonePe</option>
-            <option>Paytm</option>
+            <option value="UPI">
+                UPI
+            </option>
+
+            <option value="Paytm">
+                Paytm
+            </option>
+
+            <option value="Google Pay">
+                Google Pay
+            </option>
+
+            <option value="PhonePe">
+                PhonePe
+            </option>
 
         </select>
 
 
         <button
-            class="primary-btn full-btn"
+            class="btn full"
             onclick="submitOrder()">
-            CONTINUE
+            CONTINUE →
         </button>
 
 
-        <div id="success" class="success"></div>
+        <button
+            class="btn secondary full"
+            onclick="backToStore()"
+            style="margin-top:10px;">
+            ← BACK TO STORE
+        </button>
+
+
+        <div id="successBox" class="success">
+
+            <strong>✓ ORDER REQUEST CREATED</strong>
+
+            <br><br>
+
+            Your order details have been received.
+
+            <br>
+
+            Username:
+            <span id="successName"></span>
+
+            <br>
+
+            Product:
+            <span id="successProduct"></span>
+
+            <br>
+
+            Payment:
+            <span id="successPayment"></span>
+
+            <br><br>
+
+            Contact the DarkVoid staff on Discord
+            to complete the purchase.
+
+        </div>
 
     </div>
 
 </section>
 
 
-<div id="toast" class="toast"></div>
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div id="toast" class="toast">
+    Copied!
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    © 2026
+    <span>DARKVOID NETWORK</span>
+    — Enter The Void.
+
+</footer>
 
 
 <script>
 
-/* HOME → STORE */
+/* =====================================================
+   CONFIG
+===================================================== */
 
-function openStore(){
+const SERVER_IP = "DarkVoid2.play.hosting";
 
-    window.open(
-        window.location.pathname + "?page=store",
-        "_blank"
-    );
-
-}
+const DISCORD_LINK =
+    "https://discord.gg/YgRyBamzh";
 
 
-/* STORE TABS */
+/* =====================================================
+   JOIN SERVER
+===================================================== */
 
-function showTab(id,button){
+function joinServer(){
 
-    document
-    .querySelectorAll(".panel")
-    .forEach(function(panel){
-        panel.classList.add("hidden");
-    });
-
-    document
-    .getElementById(id)
-    .classList.remove("hidden");
-
-    document
-    .querySelectorAll(".tab")
-    .forEach(function(tab){
-        tab.classList.remove("active");
-    });
-
-    button.classList.add("active");
-
-}
-
-
-/* BILLING */
-
-function billing(product,price){
-
-    const url =
-        window.location.pathname +
-        "?page=billing" +
-        "&product=" +
-        encodeURIComponent(product) +
-        "&price=" +
-        encodeURIComponent(price);
-
-    window
+    document.getElementById("homePage")
+        .
