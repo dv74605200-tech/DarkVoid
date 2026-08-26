@@ -1,849 +1,167 @@
-<!
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DarkVoid | Minecraft Server</title>
+<title>DarkVoid</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#050505;
+    color:white;
+    min-height:100vh;
 }
 
-body {
-    font-family: Arial, sans-serif;
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
     background:
-        linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.88)),
-        radial-gradient(circle at top, #173b20, #050505 65%);
-    color: white;
-    min-height: 100vh;
+    linear-gradient(rgba(0,0,0,.82),rgba(0,0,0,.92)),
+    repeating-linear-gradient(
+        45deg,
+        #101010 0px,
+        #101010 10px,
+        #0b0b0b 10px,
+        #0b0b0b 20px
+    );
+    z-index:-1;
 }
 
-.container {
-    width: min(1100px, 92%);
-    margin: auto;
+.container{
+    width:min(1100px,92%);
+    margin:auto;
 }
 
-header {
-    padding: 25px 0;
-    text-align: center;
+header{
+    text-align:center;
+    padding:30px 0;
 }
 
-.logo {
-    font-size: clamp(42px, 9vw, 80px);
-    font-weight: 900;
-    color: #55ff55;
-    text-shadow:
-        4px 4px 0 #123d12,
-        0 0 25px #00ff44;
-    letter-spacing: 3px;
+.logo{
+    font-size:clamp(45px,10vw,85px);
+    font-weight:900;
+    color:#55ff55;
+    text-shadow:5px 5px #123512,0 0 25px #00ff44;
 }
 
-.subtitle {
-    color: #aaa;
-    margin-top: 8px;
-    font-size: 18px;
+.subtitle{
+    color:#aaa;
+    margin-top:8px;
 }
 
-.hero {
-    min-height: 75vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+.hero{
+    min-height:65vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
 }
 
-.hero-box {
-    background: rgba(0,0,0,.65);
-    border: 2px solid #303030;
-    box-shadow: 0 0 35px rgba(0,255,70,.12);
-    padding: 45px 25px;
-    border-radius: 12px;
-    width: 100%;
+.box{
+    background:#0b0b0b;
+    border:2px solid #333;
+    padding:45px 25px;
+    width:100%;
+    box-shadow:0 0 35px #000;
 }
 
-.hero h1 {
-    font-size: clamp(32px, 7vw, 62px);
-    margin-bottom: 15px;
+h1{
+    font-size:clamp(32px,7vw,60px);
 }
 
-.hero p {
-    color: #bbb;
-    margin-bottom: 30px;
-    font-size: 18px;
+.hero p{
+    color:#aaa;
+    margin:15px 0 30px;
 }
 
-.btn {
-    display: inline-block;
-    border: 2px solid #55ff55;
-    background: #1b5e20;
-    color: white;
-    padding: 15px 30px;
-    font-weight: bold;
-    font-size: 17px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: .2s;
-    box-shadow: 0 0 15px rgba(85,255,85,.2);
+.btn{
+    padding:14px 28px;
+    background:#174d1c;
+    color:white;
+    border:2px solid #55ff55;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
 }
 
-.btn:hover {
-    background: #55ff55;
-    color: #061006;
-    transform: translateY(-2px);
-    box-shadow: 0 0 25px rgba(85,255,85,.5);
+.btn:hover{
+    background:#55ff55;
+    color:#000;
+    transform:translateY(-2px);
 }
 
-.page {
-    display: none;
-    padding: 35px 0 70px;
+.page{
+    display:none;
+    padding:40px 0 70px;
 }
 
-.page.active {
-    display: block;
+.page.active{
+    display:block;
 }
 
-.page-title {
-    text-align: center;
-    font-size: 42px;
-    color: #55ff55;
-    margin-bottom: 35px;
-    text-shadow: 0 0 15px rgba(85,255,85,.4);
+.title{
+    text-align:center;
+    color:#55ff55;
+    font-size:42px;
+    margin-bottom:35px;
+    text-shadow:0 0 15px #00ff44;
 }
 
-.menu-grid,
-.shop-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 18px;
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:18px;
 }
 
-.card {
-    background: rgba(10,10,10,.9);
-    border: 2px solid #333;
-    padding: 25px;
-    text-align: center;
-    transition: .2s;
+.card{
+    background:#0c0c0c;
+    border:2px solid #333;
+    padding:28px 18px;
+    text-align:center;
+    cursor:pointer;
+    transition:.2s;
 }
 
-.card:hover {
-    border-color: #55ff55;
-    transform: translateY(-4px);
-    box-shadow: 0 0 20px rgba(85,255,85,.15);
+.card:hover{
+    border-color:#55ff55;
+    transform:translateY(-4px);
+    box-shadow:0 0 20px #174d1c;
 }
 
-.card h3 {
-    color: #55ff55;
-    margin-bottom: 12px;
+.card h2{
+    color:#55ff55;
+    margin-bottom:10px;
 }
 
-.price {
-    color: #ffd83d;
-    font-size: 21px;
-    font-weight: bold;
-    margin: 12px 0 18px;
+.card p{
+    color:#999;
 }
 
-.unavailable {
-    color: #ff5555;
-    font-weight: bold;
+.price{
+    color:#ffd83d;
+    font-size:22px;
+    font-weight:bold;
+    margin:15px 0;
 }
 
-.shop-card {
-    cursor: pointer;
+.not-sale{
+    color:#ff5555;
+    font-weight:bold;
+    margin-top:15px;
 }
 
-.billing {
-    max-width: 550px;
-    margin: auto;
-    background: rgba(10,10,10,.95);
-    border: 2px solid #333;
-    padding: 30px;
+.back{
+    text-align:center;
+    color:#55ff55;
+    margin-top:30px;
+    cursor:pointer;
 }
 
-.billing h2 {
-    text-align: center;
-    color: #55ff55;
-    margin-bottom: 25px;
-}
-
-.selected-item {
-    text-align: center;
-    padding: 15px;
-    margin-bottom: 20px;
-    background: #111;
-    border: 1px solid #444;
-}
-
-label {
-    display: block;
-    margin: 15px 0 7px;
-    color: #ccc;
-}
-
-input,
-select {
-    width: 100%;
-    padding: 14px;
-    background: #080808;
-    border: 1px solid #444;
-    color: white;
-    outline: none;
-}
-
-input:focus,
-select:focus {
-    border-color: #55ff55;
-}
-
-.full-btn {
-    width: 100%;
-    margin-top: 22px;
-}
-
-.back {
-    display: block;
-    text-align: center;
-    margin-top: 25px;
-    color: #55ff55;
-    cursor: pointer;
-}
-
-.notice {
-    text-align: center;
-    color: #888;
-    margin-top: 20px;
-    font-size: 14px;
-}
-
-footer {
-    text-align: center;
-    padding: 25px;
-    color: #666;
-    border-top: 1px solid #222;
-}
-</style>
-</head>
-
-<body>
-
-<!-- HOME -->
-<section id="home" class="page active">
-    <div class="container">
-
-        <header>
-            <div class="logo">DARKVOID</div>
-            <div class="subtitle">Minecraft Gaming Network</div>
-        </header>
-
-        <div class="hero">
-            <div class="hero-box">
-                <h1>WELCOME TO DARKVOID</h1>
-                <p>Enter the void. Build your legacy. Dominate the server.</p>
-
-                <button class="btn" onclick="openServerMenu()">
-                    ⚔ JOIN SERVER ⚔
-                </button>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- SERVER MENU -->
-<section id="serverMenu" class="page">
-    <div class="container">
-
-        <h1 class="page-title">DARKVOID SERVER</h1>
-
-        <div class="menu-grid">
-
-            <div class="card" onclick="showPage('ranks')">
-                <h3>🏆 RANKS</h3>
-                <p>Upgrade your power</p>
-            </div>
-
-            <div class="card" onclick="showPage('crates')">
-                <h3>🔑 CRATE KEYS</h3>
-                <p>Unlock amazing rewards</p>
-            </div>
-
-            <div class="card" onclick="openDiscord()">
-                <h3>💬 DISCORD</h3>
-                <p>Join our community</p>
-            </div>
-
-            <div class="card" onclick="copyIP()">
-                <h3>🌐 SERVER IP</h3>
-                <p>Click to copy IP</p>
-            </div>
-
-        </div>
-
-        <div class="notice" id="ipMessage"></div>
-
-    </div>
-</section>
-
-
-<!-- RANKS -->
-<section id="ranks" class="page">
-    <div class="container">
-
-        <h1 class="page-title">🏆 RANKS</h1>
-
-        <div class="shop-grid">
-
-            <div class="card">
-                <h3>OWNER</h3>
-                <div class="unavailable">NOT FOR SALE</div>
-            </div>
-
-            <div class="card">
-                <h3>ADMIN</h3>
-                <div class="unavailable">NOT FOR SALE</div>
-            </div>
-
-            <div class="card shop-card" onclick="openBilling('MODRATOR', 120)">
-                <h3>MODRATOR</h3>
-                <div class="price">₹120</div>
-                <button class="btn">BUY</button>
-            </div>
-
-            <div class="card shop-card" onclick="openBilling('DEVELOPER', 100)">
-                <h3>DEVELOPER</h3>
-                <div class="price">₹100</div>
-                <button class="btn">BUY</button>
-            </div>
-
-            <div class="card shop-card" onclick="openBilling('MEDIA', 80)">
-                <h3>MEDIA</h3>
-                <div class="price">₹80</div>
-                <button class="btn">BUY</button>
-            </div>
-
-            <div class="card shop-card" onclick="openBilling('HELPER', 60)">
-                <h3>HELPER</h3>
-                <div class="price">₹60</div>
-                <button class="btn">BUY</button>
-            </div>
-
-        </div>
-
-        <div class="back" onclick="showPage('serverMenu')">
-            ← Back to Server Menu
-        </div>
-
-    </div>
-</section>
-
-
-<!-- CRATES -->
-<section id="crates" class="page">
-    <div class="container">
-
-        <h1 class="page-title">🔑 CRATE KEYS</h1>
-
-        <div class="shop-grid">
-
-            <div class="card shop-card" onclick="openBilling('DarkVoid KEY', 100)">
-                <h3>DARKVOID KEY</h3>
-                <div class="price">₹100</div>
-                <button class="btn">BUY KEY</button>
-            </div>
-
-            <div class="card shop-card" onclick="openBilling('OBSIDIAN KEY', 90)">
-                <h3>OBSIDIAN KEY</h3>
-                <div class="price">₹90</div>
-                <button class="btn">BUY KEY</button>
-            </div>
-
-            <div class="card shop-card" onclick="openBilling('LEGENDARY KEY', 85)">
-                <h3>LEGENDARY KEY</h3>
-                <div class="price">₹85</div>
-                <button class="btn">BUY KEY</button>
-            </div>
-
-            <div class="card shop-card" onclick="openBilling('EPIC KEY', 70)">
-                <h3>EPIC KEY</h3>
-                <div class="price">₹70</div>
-                <button class="btn">BUY KEY</button>
-            </div>
-
-            <div class="card shop-card" onclick="openBilling('PRO KEY', 60)">
-                <h3>PRO KEY</h3>
-                <div class="price">₹60</div>
-                <button class="btn">BUY KEY</button>
-            </div>
-
-            <div class="card shop-card" onclick="openBilling('NETHERITE KEY', 55)">
-                <h3>NETHERITE KEY</h3>
-                <div class="price">₹55</div>
-                <button class="btn">BUY KEY</button>
-            </div>
-
-            <div class="card shop-card" onclick="openBilling('DIAMOND KEY', 50)">
-                <h3>DIAMOND KEY</h3>
-                <div class="price">₹50</div>
-                <button class="btn">BUY KEY</button>
-            </div>
-
-        </div>
-
-        <div class="back" onclick="showPage('serverMenu')">
-            ← Back to Server Menu
-        </div>
-
-    </div>
-</section>
-
-
-<!-- BILLING -->
-<section id="billing" class="page">
-    <div class="container">
-
-        <h1 class="page-title">💳 BILLING</h1>
-
-        <div class="billing">
-
-            <h2>DarkVoid Store</h2>
-
-            <div class="selected-item">
-                <div id="selectedItem">Item</div>
-                <strong id="selectedPrice">₹0</strong>
-            </div>
-
-            <label for="ign">In-Game Name</label>
-            <input
-                id="ign"
-                type="text"
-                placeholder="Enter your Minecraft name"
-            >
-
-            <label for="payment">Payment Method</label>
-            <select id="payment">
-                <option value="">Select payment method</option>
-                <option>UPI</option>
-                <option>Google Pay</option>
-                <option>PhonePe</option>
-                <option>Paytm</option>
-            </select>
-
-            <button class="btn full-btn" onclick="submitOrder()">
-                CONTINUE TO PAYMENT
-            </button>
-
-            <div class="notice">
-                Payment gateway can be connected here later.
-            </div>
-
-            <div class="back" onclick="showPage('serverMenu')">
-                ← Back
-            </div>
-
-        </div>
-
-    </div>
-</section>
-
-
-<footer>
-    © 2026 DarkVoid • Minecraft Gaming Network
-</footer>
-
-
-<script>
-
-const SERVER_IP = "2DarkVoid2.play.hosting";
-const DISCORD_LINK = "https://discord.gg/YgRyBamzh";
-
-function showPage(pageId) {
-
-    document.querySelectorAll(".page").forEach(page => {
-        page.classList.remove("active");
-    });
-
-    document.getElementById(pageId).classList.add("active");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
-
-
-/* JOIN SERVER → NEW TAB */
-function openServerMenu() {
-
-    const newTab = window.open("", "_blank");
-
-    if (!newTab) {
-        alert("Please allow pop-ups for this website.");
-        return;
-    }
-
-    newTab.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>DarkVoid Server</title>
-            <style>
-                body {
-                    margin: 0;
-                    min-height: 100vh;
-                    background:
-                        linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.9)),
-                        #071007;
-                    color: white;
-                    font-family: Arial,sans-serif;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    text-align: center;
-                }
-
-                .box {
-                    width: min(900px,90%);
-                }
-
-                h1 {
-                    color: #55ff55;
-                    font-size: 55px;
-                    text-shadow: 0 0 20px #00ff44;
-                }
-
-                .grid {
-                    display: grid;
-                    grid-template-columns:
-                        repeat(auto-fit,minmax(200px,1fr));
-                    gap: 18px;
-                }
-
-                .card {
-                    padding: 30px 15px;
-                    background: #101010;
-                    border: 2px solid #333;
-                    cursor: pointer;
-                }
-
-                .card:hover {
-                    border-color: #55ff55;
-                    transform: translateY(-3px);
-                }
-
-                h2 {
-                    color: #55ff55;
-                }
-
-                p {
-                    color: #aaa;
-                }
-            </style>
-        </head>
-
-        <body>
-
-        <div class="box">
-
-            <h1>DARKVOID</h1>
-
-            <div class="grid">
-
-                <div class="card" onclick="window.location.href =
-                '${location.href.split('#')[0]}#ranks'">
-                    <h2>🏆 RANKS</h2>
-                    <p>View server ranks</p>
-                </div>
-
-                <div class="card" onclick="window.location.href =
-                '${location.href.split('#')[0]}#crates'">
-                    <h2>🔑 CRATE KEYS</h2>
-                    <p>Buy crate keys</p>
-                </div>
-
-                <div class="card" onclick="window.open(
-                '${DISCORD_LINK}','_blank')">
-                    <h2>💬 DISCORD</h2>
-                    <p>Join Discord</p>
-                </div>
-
-                <div class="card" onclick="
-                navigator.clipboard.writeText('${SERVER_IP}');
-                alert('Server IP copied!')">
-                    <h2>🌐 IP</h2>
-                    <p>${SERVER_IP}</p>
-                </div>
-
-            </div>
-
-        </div>
-
-        </body>
-        </html>
-    `);
-
-    newTab.document.close();
-}
-
-
-/* DISCORD */
-function openDiscord() {
-    window.open(DISCORD_LINK, "_blank");
-}
-
-
-/* COPY IP */
-function copyIP() {
-
-    navigator.clipboard.writeText(SERVER_IP)
-        .then(() => {
-
-            document.getElementById("ipMessage").textContent =
-                "✅ Server IP copied: " + SERVER_IP;
-
-        })
-        .catch(() => {
-
-            alert("Server IP: " + SERVER_IP);
-
-        });
-}
-
-
-/* BILLING */
-function openBilling(item, price) {
-
-    /*
-      Opens billing in a new tab as requested.
-    */
-
-    const billingTab = window.open("", "_blank");
-
-    if (!billingTab) {
-        alert("Please allow pop-ups for this website.");
-        return;
-    }
-
-    billingTab.document.write(`
-        <!DOCTYPE html>
-        <html>
-
-        <head>
-            <title>DarkVoid Billing</title>
-
-            <style>
-
-                * {
-                    box-sizing: border-box;
-                }
-
-                body {
-                    margin: 0;
-                    min-height: 100vh;
-                    background:
-                        linear-gradient(rgba(0,0,0,.85),
-                        rgba(0,0,0,.92)),
-                        #071007;
-                    color: white;
-                    font-family: Arial,sans-serif;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 20px;
-                }
-
-                .billing {
-                    width: min(520px,100%);
-                    background: #0d0d0d;
-                    border: 2px solid #333;
-                    padding: 30px;
-                }
-
-                h1 {
-                    color: #55ff55;
-                    text-align: center;
-                    text-shadow: 0 0 15px #00ff44;
-                }
-
-                .item {
-                    background: #151515;
-                    padding: 20px;
-                    text-align: center;
-                    margin: 20px 0;
-                    border: 1px solid #444;
-                }
-
-                .item strong {
-                    display: block;
-                    color: #ffd83d;
-                    font-size: 25px;
-                    margin-top: 8px;
-                }
-
-                label {
-                    display: block;
-                    color: #bbb;
-                    margin: 15px 0 7px;
-                }
-
-                input, select {
-                    width: 100%;
-                    padding: 14px;
-                    background: #050505;
-                    color: white;
-                    border: 1px solid #444;
-                    outline: none;
-                }
-
-                input:focus, select:focus {
-                    border-color: #55ff55;
-                }
-
-                button {
-                    width: 100%;
-                    padding: 15px;
-                    margin-top: 22px;
-                    background: #1b5e20;
-                    color: white;
-                    border: 2px solid #55ff55;
-                    font-weight: bold;
-                    cursor: pointer;
-                }
-
-                button:hover {
-                    background: #55ff55;
-                    color: black;
-                }
-
-                .note {
-                    text-align: center;
-                    color: #777;
-                    font-size: 13px;
-                    margin-top: 18px;
-                }
-
-            </style>
-
-        </head>
-
-        <body>
-
-        <div class="billing">
-
-            <h1>DARKVOID BILLING</h1>
-
-            <div class="item">
-                ${item}
-                <strong>₹${price}</strong>
-            </div>
-
-            <label>In-Game Name</label>
-
-            <input
-                id="ign"
-                type="text"
-                placeholder="Enter Minecraft username"
-            >
-
-            <label>Payment Method</label>
-
-            <select id="payment">
-                <option value="">Select payment method</option>
-                <option>UPI</option>
-                <option>Google Pay</option>
-                <option>PhonePe</option>
-                <option>Paytm</option>
-            </select>
-
-            <button onclick="order()">
-                CONTINUE TO PAYMENT
-            </button>
-
-            <div class="note">
-                Secure payment integration can be added here.
-            </div>
-
-        </div>
-
-        <script>
-
-            function order() {
-
-                const ign =
-                    document.getElementById("ign").value.trim();
-
-                const payment =
-                    document.getElementById("payment").value;
-
-                if (!ign) {
-                    alert("Please enter your In-Game Name.");
-                    return;
-                }
-
-                if (!payment) {
-                    alert("Please select a payment method.");
-                    return;
-                }
-
-                alert(
-                    "Order selected!\\n\\n" +
-                    "Item: ${item}\\n" +
-                    "Price: ₹${price}\\n" +
-                    "IGN: " + ign + "\\n" +
-                    "Payment: " + payment
-                );
-
-            }
-
-        <\/script>
-
-        </body>
-        </html>
-    `);
-
-    billingTab.document.close();
-}
-
-
-/* FALLBACK BILLING BUTTON */
-function submitOrder() {
-
-    const ign = document.getElementById("ign").value.trim();
-    const payment = document.getElementById("payment").value;
-
-    if (!ign) {
-        alert("Please enter your In-Game Name.");
-        return;
-    }
-
-    if (!payment) {
-        alert("Please select a payment method.");
-        return;
-    }
-
-    alert("Please connect a real payment gateway before accepting payments.");
-}
-
-
-/* HASH SUPPORT */
-window.addEventListener("load", () => {
-
-    if (location.hash === "#ranks") {
-        showPage("ranks");
-    }
-
-    if (location.hash === "#crates") {
-        showPage("crates");
-    }
-
-});
-
-</script>
-
-</body>
-    </html>
+.billing{
+    max-width:520px;
+    margin:auto;
+    background
