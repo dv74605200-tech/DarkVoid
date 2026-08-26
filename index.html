@@ -3,69 +3,379 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DarkVoid SMP</title>
+<title>DarkVoid</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#08060d;color:#fff;line-height:1.6}
-nav{position:sticky;top:0;z-index:10;background:#0d0916ee;backdrop-filter:blur(10px);padding:16px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #6f20ff55}
-.logo{font-size:24px;font-weight:900;color:#a855f7}.links a{color:#ddd;text-decoration:none;margin-left:22px}.links a:hover{color:#b66cff}
-.hero{text-align:center;padding:110px 20px;background:radial-gradient(circle at center,#421080 0,#12091c 35%,#08060d 70%)}
-.hero h1{font-size:clamp(48px,10vw,90px);letter-spacing:3px;text-shadow:0 0 25px #9b4dff}.hero p{color:#cfc4da;font-size:20px;margin:12px 0 28px}
-.btn{display:inline-block;background:#8b3dff;color:#fff;text-decoration:none;padding:13px 24px;border-radius:10px;font-weight:bold;box-shadow:0 0 22px #8b3dff66}.btn:hover{background:#a45cff}
-section{padding:70px 7%;max-width:1100px;margin:auto}h2{text-align:center;font-size:34px;margin-bottom:28px;color:#c084fc}
-.card{background:#110b1b;border:1px solid #6f20ff55;border-radius:16px;padding:24px;margin:12px 0;box-shadow:0 8px 30px #0005}
-.ip{font-family:monospace;font-size:20px;color:#d8b4fe;word-break:break-all}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-footer{text-align:center;padding:30px;color:#8f829d;border-top:1px solid #6f20ff33}
-.status{color:#9effb2;font-weight:bold}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #070707;
+    color: white;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.box {
+    width: 100%;
+    max-width: 850px;
+    background: #111;
+    border: 1px solid #6f00ff;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 0 35px #4b0082;
+}
+
+h1 {
+    text-align: center;
+    font-size: 45px;
+    color: #a855ff;
+    text-shadow: 0 0 20px #8b00ff;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #999;
+    margin-bottom: 30px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(135deg, #6d00ff, #a000ff);
+    padding: 13px 22px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.join {
+    display: block;
+    margin: auto;
+    font-size: 16px;
+}
+
+.menu {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.menu button {
+    flex: 1;
+}
+
+.section {
+    margin-top: 20px;
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #181818;
+    border: 1px solid #292929;
+    padding: 17px;
+    margin: 10px 0;
+    border-radius: 12px;
+}
+
+.price {
+    color: #b76cff;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.buy {
+    padding: 9px 15px;
+}
+
+.disabled {
+    background: #333;
+    color: #777;
+    cursor: not-allowed;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Billing */
+#billing {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.billing-box {
+    width: 100%;
+    max-width: 420px;
+    background: #111;
+    border: 1px solid #8500ff;
+    border-radius: 18px;
+    padding: 25px;
+}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    margin: 8px 0 15px;
+    background: #080808;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 8px;
+}
+
+.close {
+    background: #333;
+    margin-left: 8px;
+}
 </style>
 </head>
+
 <body>
-<nav><div class="logo">⚔ DARKVOID SMP</div><div class="links">
-<a href="#home">Home</a><a href="#rules">Rules</a><a href="#staff">Staff</a>
-</div></nav>
 
-<header class="hero" id="home">
-<h1>DARKVOID SMP</h1>
-<p>Enter the Void. Build. Fight. Survive.</p>
-<a class="btn" href="#server">JOIN SERVER</a>
-</header>
+<!-- MAIN PAGE -->
+<div class="container" id="home">
+    <div class="box">
+        <h1>DARKVOID</h1>
+        <p class="subtitle">Welcome to DarkVoid Network</p>
 
-<section id="server">
-<h2>⚔ Server</h2>
-<div class="card" style="text-align:center">
-<p class="status">● SERVER IP</p>
-<p class="ip" id="ip">2darkvoid2.play.hosting</p>
-<br>
-<button class="btn" onclick="copyIP()">COPY IP</button>
-<p id="copied" style="color:#c084fc;margin-top:10px"></p>
+        <button class="join" onclick="openStore()">
+            JOIN SERVER
+        </button>
+    </div>
 </div>
-</section>
 
-<section id="rules">
-<h2>📜 Rules</h2>
-<div class="grid">
-<div class="card"><b>1. No Cheating</b><p>Hacks, unfair clients and exploits are not allowed.</p></div>
-<div class="card"><b>2. Respect Players</b><p>No harassment, threats or unnecessary toxicity.</p></div>
-<div class="card"><b>3. No Griefing</b><p>Don't destroy or steal from other players without permission.</p></div>
-<div class="card"><b>4. Follow Staff</b><p>Staff decisions must be respected.</p></div>
+
+<!-- STORE -->
+<div class="container hidden" id="store">
+    <div class="box">
+
+        <h1>DarkVoid Store</h1>
+        <p class="subtitle">Choose what you want to purchase</p>
+
+        <div class="menu">
+            <button onclick="show('ranks')">Ranks</button>
+            <button onclick="show('keys')">Crate Keys</button>
+        </div>
+
+
+        <!-- RANKS -->
+        <div id="ranks" class="section">
+
+            <h2>RANKS</h2>
+
+            <div class="card">
+                <div>
+                    <b>OWNER</b>
+                    <p>Not for sale</p>
+                </div>
+                <button class="disabled" disabled>Unavailable</button>
+            </div>
+
+            <div class="card">
+                <div>
+                    <b>ADMIN</b>
+                    <p>Not for sale</p>
+                </div>
+                <button class="disabled" disabled>Unavailable</button>
+            </div>
+
+            <div class="card">
+                <div>
+                    <b>MODERATOR</b>
+                    <p class="price">₹120</p>
+                </div>
+                <button class="buy" onclick="billing('MODERATOR',120)">BUY</button>
+            </div>
+
+            <div class="card">
+                <div>
+                    <b>DEVELOPER</b>
+                    <p class="price">₹100</p>
+                </div>
+                <button class="buy" onclick="billing('DEVELOPER',100)">BUY</button>
+            </div>
+
+            <div class="card">
+                <div>
+                    <b>MEDIA</b>
+                    <p class="price">₹80</p>
+                </div>
+                <button class="buy" onclick="billing('MEDIA',80)">BUY</button>
+            </div>
+
+            <div class="card">
+                <div>
+                    <b>HELPER</b>
+                    <p class="price">₹60</p>
+                </div>
+                <button class="buy" onclick="billing('HELPER',60)">BUY</button>
+            </div>
+
+        </div>
+
+
+        <!-- CRATE KEYS -->
+        <div id="keys" class="section hidden">
+
+            <h2>CRATE KEYS</h2>
+
+            <div class="card">
+                <b>1 DarkVoid KEY</b>
+                <span class="price">₹100</span>
+                <button onclick="billing('DarkVoid KEY',100)">BUY</button>
+            </div>
+
+            <div class="card">
+                <b>1 OBSIDIAN KEY</b>
+                <span class="price">₹90</span>
+                <button onclick="billing('OBSIDIAN KEY',90)">BUY</button>
+            </div>
+
+            <div class="card">
+                <b>1 LEGENDARY KEY</b>
+                <span class="price">₹85</span>
+                <button onclick="billing('LEGENDARY KEY',85)">BUY</button>
+            </div>
+
+            <div class="card">
+                <b>1 EPIC KEY</b>
+                <span class="price">₹70</span>
+                <button onclick="billing('EPIC KEY',70)">BUY</button>
+            </div>
+
+            <div class="card">
+                <b>1 PRO KEY</b>
+                <span class="price">₹60</span>
+                <button onclick="billing('PRO KEY',60)">BUY</button>
+            </div>
+
+            <div class="card">
+                <b>1 NETHERITE KEY</b>
+                <span class="price">₹55</span>
+                <button onclick="billing('NETHERITE KEY',55)">BUY</button>
+            </div>
+
+            <div class="card">
+                <b>1 DIAMOND KEY</b>
+                <span class="price">₹50</span>
+                <button onclick="billing('DIAMOND KEY',50)">BUY</button>
+            </div>
+
+        </div>
+
+    </div>
 </div>
-</section>
 
-<section id="staff">
-<h2>👑 Staff</h2>
-<div class="grid">
-<div class="card"><h3>Owner</h3><p>DarkVoid</p></div>
-<div class="card"><h3>Staff</h3><p>Coming Soon...</p></div>
+
+<!-- BILLING -->
+<div id="billing" class="hidden">
+
+    <div class="billing-box">
+
+        <h2>Billing Counter</h2>
+
+        <p id="product"></p>
+
+        <label>In-game Name</label>
+        <input type="text" id="ign" placeholder="Enter your IGN">
+
+        <label>Payment Method</label>
+        <select id="payment">
+            <option value="">Select Payment Method</option>
+            <option>UPI</option>
+            <option>Paytm</option>
+            <option>Google Pay</option>
+            <option>PhonePe</option>
+        </select>
+
+        <button onclick="submitOrder()">Continue</button>
+        <button class="close" onclick="closeBilling()">Close</button>
+
+    </div>
+
 </div>
-</section>
 
-<footer>© 2026 DarkVoid SMP • Enter the Void</footer>
+
 <script>
-function copyIP(){
-navigator.clipboard.writeText("2darkvoid2.play.hosting");
-document.getElementById("copied").textContent="IP copied! 🔥";
+
+function openStore() {
+
+    let newTab = window.open("", "_blank");
+
+    if (!newTab) {
+        alert("Please allow pop-ups.");
+        return;
+    }
+
+    newTab.document.write(document.documentElement.outerHTML);
+    newTab.document.close();
+
+    newTab.document.getElementById("home").classList.add("hidden");
+    newTab.document.getElementById("store").classList.remove("hidden");
 }
+
+
+function show(section) {
+
+    document.getElementById("ranks").classList.add("hidden");
+    document.getElementById("keys").classList.add("hidden");
+
+    document.getElementById(section).classList.remove("hidden");
+}
+
+
+function billing(name, price) {
+
+    document.getElementById("product").innerHTML =
+        "<br><b>" + name + "</b> — ₹" + price;
+
+    document.getElementById("billing").classList.remove("hidden");
+}
+
+
+function closeBilling() {
+
+    document.getElementById("billing").classList.add("hidden");
+}
+
+
+function submitOrder() {
+
+    let ign = document.getElementById("ign").value;
+    let payment = document.getElementById("payment").value;
+
+    if (ign === "" || payment === "") {
+        alert("Please enter IGN and select payment method.");
+        return;
+    }
+
+    alert(
+        "Order Details\n\n" +
+        "IGN: " + ign + "\n" +
+        "Payment: " + payment +
+        "\n\nConnect your payment system here."
+    );
+}
+
 </script>
+
 </body>
 </html>
