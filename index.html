@@ -3,108 +3,458 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>DarkVoid Network</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-:root{
-    --bg:#050509;
-    --card:#0d0d14;
-    --card2:#11111a;
-    --purple:#8b5cf6;
-    --purple2:#a855f7;
-    --text:#fff;
-    --muted:#9292a3;
-    --border:rgba(139,92,246,.18);
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-    font-family:Inter,Arial,sans-serif;
-    background:var(--bg);
-    color:var(--text);
+    background:#050000;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ===== BACKGROUND ===== */
+
+.hero{
     min-height:100vh;
-}
-
-body:before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-2;
+    position:relative;
+    overflow:hidden;
     background:
-    radial-gradient(circle at 50% -10%,rgba(139,92,246,.25),transparent 35%),
-    radial-gradient(circle at 0% 70%,rgba(88,28,135,.12),transparent 30%);
+        radial-gradient(circle at 50% 25%,#3b0000 0%,#160000 28%,#070000 65%,#020000 100%);
 }
 
-body:after{
+/* Moon */
+.moon{
+    position:absolute;
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    right:12%;
+    top:90px;
+    background:#eee;
+    box-shadow:
+        0 0 25px #fff,
+        0 0 70px rgba(255,40,40,.35);
+    opacity:.9;
+}
+
+/* Moon shadow */
+.moon:after{
     content:"";
-    position:fixed;
-    inset:0;
-    z-index:-1;
-    pointer-events:none;
-    opacity:.25;
-    background-image:
-    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-    background-size:45px 45px;
+    position:absolute;
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    background:#090000;
+    left:55px;
+    top:-20px;
 }
 
-.hidden{
-    display:none!important;
+/* Demon silhouette */
+.demon{
+    position:absolute;
+    bottom:-20px;
+    left:50%;
+    transform:translateX(-50%);
+    width:360px;
+    height:520px;
+    opacity:.9;
 }
 
-button{
-    font-family:inherit;
+.demon .head{
+    position:absolute;
+    width:150px;
+    height:145px;
+    background:#080000;
+    border-radius:48% 48% 42% 42%;
+    top:100px;
+    left:105px;
+    box-shadow:0 0 40px rgba(255,0,0,.15);
 }
 
-/* NAVBAR */
+.demon .horn{
+    position:absolute;
+    width:70px;
+    height:115px;
+    background:#080000;
+    top:20px;
+    border-radius:80% 10% 0 0;
+}
 
-.navbar{
-    width:100%;
-    height:72px;
-    border-bottom:1px solid var(--border);
-    background:rgba(5,5,9,.75);
-    backdrop-filter:blur(16px);
+.demon .horn.left{
+    left:82px;
+    transform:rotate(-28deg);
+}
+
+.demon .horn.right{
+    right:82px;
+    transform:rotate(28deg);
+}
+
+.demon .eye{
+    position:absolute;
+    width:27px;
+    height:12px;
+    background:#ff1111;
+    box-shadow:0 0 18px #ff0000;
+    top:155px;
+    border-radius:50%;
+}
+
+.demon .eye.left{
+    left:130px;
+    transform:rotate(10deg);
+}
+
+.demon .eye.right{
+    right:130px;
+    transform:rotate(-10deg);
+}
+
+.demon .body{
+    position:absolute;
+    width:250px;
+    height:310px;
+    background:#070000;
+    left:55px;
+    top:215px;
+    clip-path:polygon(
+        38% 0,62% 0,
+        78% 15%,100% 100%,
+        0 100%,22% 15%
+    );
+}
+
+/* Red fog */
+.fog{
+    position:absolute;
+    width:700px;
+    height:300px;
+    left:50%;
+    bottom:0;
+    transform:translateX(-50%);
+    background:radial-gradient(
+        ellipse,
+        rgba(150,0,0,.45),
+        transparent 70%
+    );
+    filter:blur(30px);
+}
+
+/* ===== NAVBAR ===== */
+
+nav{
+    position:relative;
+    z-index:10;
+    height:70px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 6%;
-    position:sticky;
-    top:0;
-    z-index:50;
+    padding:0 7%;
+    background:rgba(0,0,0,.75);
+    border-bottom:1px solid rgba(255,0,0,.25);
+    backdrop-filter:blur(10px);
 }
 
-.brand{
+.logo{
     font-size:22px;
     font-weight:900;
     letter-spacing:2px;
 }
 
-.brand span{
-    color:var(--purple2);
+.logo span{
+    color:#ff2020;
+    text-shadow:0 0 15px red;
 }
 
-.nav-status{
+nav a{
+    color:#ddd;
+    text-decoration:none;
+    margin-left:25px;
+    font-size:14px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#ff2222;
+    text-shadow:0 0 10px red;
+}
+
+/* ===== HERO CONTENT ===== */
+
+.hero-content{
+    position:relative;
+    z-index:5;
+    min-height:calc(100vh - 70px);
     display:flex;
+    flex-direction:column;
+    justify-content:center;
     align-items:center;
-    gap:8px;
-    color:#a8a8b5;
-    font-size:13px;
+    text-align:center;
+    padding:30px 20px;
 }
 
-.dot{
-    width:8px;
-    height:8px;
-    background:#22c55e;
-    border-radius:50%;
-    box-shadow:0 0 10px #22c55e;
+.badge{
+    padding:8px 17px;
+    border:1px solid rgba(255,0,0,.5);
+    background:rgba(80,0,0,.35);
+    border-radius:30px;
+    color:#ff7777;
+    font-size:12px;
+    letter-spacing:1px;
+    margin-bottom:22px;
 }
+
+h1{
+    font-size:clamp(48px,9vw,100px);
+    line-height:.9;
+    font-weight:1000;
+    letter-spacing:-4px;
+}
+
+h1 span{
+    color:#ff1616;
+    text-shadow:
+        0 0 15px red,
+        0 0 45px rgba(255,0,0,.5);
+}
+
+.subtitle{
+    max-width:620px;
+    color:#aaa;
+    margin-top:25px;
+    line-height:1.7;
+    font-size:15px;
+}
+
+.buttons{
+    display:flex;
+    gap:15px;
+    margin-top:35px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.btn{
+    border:0;
+    padding:15px 28px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    color:white;
+    background:#e00000;
+    box-shadow:0 0 25px rgba(255,0,0,.35);
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    background:#ff1717;
+    box-shadow:0 0 40px rgba(255,0,0,.65);
+}
+
+.btn.secondary{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,0,0,.35);
+    box-shadow:none;
+}
+
+.btn.secondary:hover{
+    background:rgba(150,0,0,.2);
+}
+
+/* ===== SERVER INFO ===== */
+
+.info{
+    position:relative;
+    z-index:5;
+    padding:80px 7%;
+    background:#030000;
+}
+
+.section-title{
+    text-align:center;
+    font-size:35px;
+    margin-bottom:40px;
+}
+
+.section-title span{
+    color:#ff2222;
+}
+
+.cards{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:linear-gradient(
+        145deg,
+        rgba(100,0,0,.25),
+        rgba(20,0,0,.5)
+    );
+    border:1px solid rgba(255,0,0,.2);
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:#ff2222;
+    box-shadow:0 15px 40px rgba(255,0,0,.15);
+}
+
+.card h3{
+    color:#ff3030;
+    margin-bottom:12px;
+}
+
+.card p{
+    color:#999;
+    font-size:14px;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#666;
+    background:#010000;
+    border-top:1px solid rgba(255,0,0,.15);
+}
+
+footer span{
+    color:#e11;
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:700px){
+
+    nav{
+        padding:0 20px;
+    }
+
+    nav div:last-child{
+        display:none;
+    }
+
+    .moon{
+        width:150px;
+        height:150px;
+        right:-20px;
+        top:100px;
+    }
+
+    .moon:after{
+        width:150px;
+        height:150px;
+        left:40px;
+    }
+
+    .demon{
+        transform:translateX(-50%) scale(.75);
+        bottom:-80px;
+    }
+
+    h1{
+        font-size:55px;
+        letter-spacing:-3px;
+    }
+
+    .subtitle{
+        font-size:13px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .info{
+        padding:60px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+    <div class="moon"></div>
+
+    <div class="demon">
+        <div class="horn left"></div>
+        <div class="horn right"></div>
+
+        <div class="head"></div>
+
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+
+        <div class="body"></div>
+    </div>
+
+    <div class="fog"></div>
+
+    <nav>
+        <div class="logo">
+            DARK<span>VOID</span>
+        </div>
+
+        <div>
+            <a href="#home">HOME</a>
+            <a href="#server">SERVER</a>
+            <a href="#about">ABOUT</a>
+        </div>
+    </nav>
+
+    <div class="hero-content" id="home">
+
+        <div class="badge">☠ DARKVOID NETWORK ☠</div>
+
+        <h1>
+            ENTER THE<br>
+            <span>VOID.</span>
+        </h1>
+
+        <p class="subtitle">
+            Welcome to DarkVoid Network.
+            Enter the darkness, explore the server,
+            collect ranks and dominate the Void.
+        </p>
+
+        <div class="buttons">
+
+            <button class="btn" onclick="joinServer()">
+                JOIN SERVER →
+            </button>
+
+            <button class="btn secondary" onclick="copyIP()">
+                COPY IP
+            </button>
+
+        </div>
+
+    </div>
+</section>}
 
 /* HOME */
 
