@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DarkVoid Network</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
+html{scroll-behavior:smooth}
+body{background:#050000;color:#fff;overflow-x:hidden}
+.hidden{display:none!important}
+button,a{-webkit-tap-highlight-color:transparent}
+
+/* HOME */
+.home{min-height:100vh;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 18%,#4a0000 0%,#190000 35%,#070000 70%,#020000 100%)}
+nav{height:70px;padding:0 7%;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:10;background:rgba(0,0,0,.65);border-bottom:1px solid rgba(255,0,0,.25);backdrop-filter:blur(10px)}
+.logo{font-size:23px;font-weight:900;letter-spacing:2px}.logo span{color:#ff1d1d;text-shadow:0 0 15px red}
+.navlinks{display:flex;gap:24px}.navlinks a{color:#ccc;text-decoration:none;font-size:14px}
+.navlinks a:hover{color:#ff3030}
+.moon{position:absolute;right:10%;top:90px;width:220px;height:220px;border-radius:50%;background:#eee;opacity:.92;box-shadow:0 0 30px #fff,0 0 90px rgba(255,0,0,.35)}
+.moon:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;left:58px;top:-20px;background:#0b0000}
+.demon{position:absolute;left:50%;bottom:-25px;transform:translateX(-50%);width:360px;height:500px;pointer-events:none}
+.head{position:absolute;width:150px;height:145px;background:#050000;border-radius:50%;top:90px;left:105px}
+.horn{position:absolute;width:70px;height:120px;background:#050000;top:15px;border-radius:80% 10% 0 0}.horn.left{left:80px;transform:rotate(-30deg)}.horn.right{right:80px;transform:rotate(30deg)}
+.eye{position:absolute;width:28px;height:12px;background:#ff1010;box-shadow:0 0 22px red;border-radius:50%;top:145px}.eye.left{left:130px;transform:rotate(10deg)}.eye.right{right:130px;transform:rotate(-10deg)}
+.bodyshape{position:absolute;width:250px;height:300px;background:#050000;left:55px;top:205px;clip-path:polygon(38% 0,62% 0,78% 15%,100% 100%,0 100%,22% 15%)}
+.hero{min-height:calc(100vh - 70px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 20px;position:relative;z-index:3}
+.badge{padding:8px 17px;border:1px solid rgba(255,0,0,.5);border-radius:30px;background:rgba(80,0,0,.3);color:#ff7777;font-size:12px;margin-bottom:22px}
+.hero h1{font-size:clamp(50px,9vw,100px);line-height:.9;letter-spacing:-4px}.hero h1 span{color:#ff1515;text-shadow:0 0 20px red,0 0 55px rgba(255,0,0,.55)}
+.subtitle{max-width:620px;color:#aaa;line-height:1.7;margin-top:24px}
+.buttons{display:flex;gap:15px;flex-wrap:wrap;justify-content:center;margin-top:34px}
+.btn{border:none;padding:15px 28px;border-radius:8px;cursor:pointer;background:#df0000;color:#fff;font-weight:800;box-shadow:0 0 25px rgba(255,0,0,.35);transition:.25s}.btn:hover{transform:translateY(-2px);background:#ff1717}
+.secondary{background:rgba(255,255,255,.06);border:1px solid rgba(255,0,0,.35);box-shadow:none}
+
+/* STORE */
+.store{min-height:100vh;background:radial-gradient(circle at 50% 0%,#350000,#070000 62%)}
+.wrap{max-width:1100px;margin:auto;padding:45px 20px 70px}.storehead{text-align:center;margin-bottom:30px}.storehead h2{font-size:42px}.storehead span{color:#ff2222}.storehead p{color:#888;margin-top:10px}
+.menu{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}.menu button{padding:15px 10px;border-radius:10px;border:1px solid rgba(255,0,0,.25);background:#130303;color:#aaa;cursor:pointer;font-weight:bold}.menu button.active,.menu button:hover{background:#330505;border-color:#ff1111;color:#fff}
+.panel{background:rgba(10,0,0,.92);border:1px solid rgba(255,0,0,.2);border-radius:15px;padding:25px}.panel h3{font-size:23px;margin-bottom:20px}
+.products{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.product{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:17px;border-radius:10px;background:rgba(100,0,0,.12);border:1px solid rgba(255,0,0,.15)}.pname{font-weight:bold}.price{color:#ff4444;font-weight:bold;margin-top:5px}.nosale{color:#777;font-size:12px;margin-top:5px}
+.buy{border:none;padding:10px 16px;border-radius:7px;background:#d90000;color:#fff;font-weight:bold;cursor:pointer}.buy:hover{background:#ff1111}.buy.disabled{background:#222;color:#666;cursor:not-allowed}
+.center{text-align:center;padding:45px 20px}.center h2{margin-bottom:12px}.center p{color:#999;margin-bottom:20px}.ipbox{display:inline-block;padding:14px 20px;margin-bottom:20px;border-radius:8px;border:1px solid rgba(255,0,0,.4);color:#ff5555;background:#080000;font-weight:bold;cursor:pointer}
+
+/* BILLING */
+.billing{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:25px;background:radial-gradient(circle at 50% 0%,#350000,#050000 60%)}.billbox{width:100%;max-width:500px;padding:30px;border-radius:16px;background:#0d0000;border:1px solid rgba(255,0,0,.35);box-shadow:0 20px 60px rgba(255,0,0,.12)}.billbox h2{margin-bottom:10px}.selected{color:#ff4444;font-weight:bold;margin-bottom:25px}
+label{display:block;color:#aaa;font-size:13px;margin-bottom:7px}input,select{width:100%;padding:14px;margin-bottom:18px;border-radius:8px;border:1px solid #401010;background:#070000;color:#fff;outline:none}input:focus,select:focus{border-color:#ff2222}.full{width:100%}.result{display:none;margin-top:20px;padding:15px;border-radius:8px;background:rgba(0,100,0,.15);border:1px solid rgba(0,255,0,.25);color:#9cff9c;line-height:1.7}
+.toast{position:fixed;right:20px;bottom:20px;padding:14px 18px;background:#1b0000;border:1px solid #b00000;border-radius:8px;opacity:0;transform:translateY(100px);transition:.3s;z-index:99}.toast.show{opacity:1;transform:translateY(0)}
+footer{text-align:center;padding:28px;color:#666;background:#020000}
+@media(max-width:700px){.navlinks{display:none}nav{padding:0 20px}.moon{width:150px;height:150px;right:-20px}.moon:after{width:150px;height:150px;left:40px}.demon{transform:translateX(-50%) scale(.75);bottom:-80px}.products{grid-template-columns:1fr}.menu{grid-template-columns:1fr 1fr}.hero h1{font-size:58px}.storehead h2{font-size:32px}}
+</style>
+</head>
+<body>
+
+<section id="homePage" class="home">
+<div class="moon"></div>
+<div class="demon"><div class="horn left"></div><div class="horn right"></div><div class="head"></div><div class="eye left"></div><div class="eye right"></div><div class="bodyshape"></div></div>
+<nav><div class="logo">DARK<span>VOID</span></div><div class="navlinks"><a href="#homePage">HOME</a><a href="javascript:joinServer()">STORE</a></div></nav>
+<div class="hero">
+<div class="badge">☠ DARKVOID NETWORK ☠</div>
+<h1>ENTER THE<br><span>VOID.</span></h1>
+<p class="subtitle">Welcome to DarkVoid Network. Enter the darkness, explore the server, collect ranks and dominate the Void.</p>
+<div class="buttons"><button class="btn" onclick="joinServer()">JOIN SERVER →</button><button class="btn secondary" onclick="copyIP()">COPY IP</button></div>
+</div>
+</section>
+
+<section id="storePage" class="store hidden">
+<nav><div class="logo">DARK<span>VOID</span></div><div class="navlinks"><a href="javascript:goHome()">HOME</a></div></nav>
+<div class="wrap">
+<div class="storehead"><h2>DARK<span>VOID</span> STORE</h2><p>Choose your upgrade and enter the Void.</p></div>
+<div class="menu">
+<button id="mRanks" class="active" onclick="showTab('ranks')">🏆 RANKS</button>
+<button id="mKeys" onclick="showTab('keys')">🔑 CRATE KEYS</button>
+<button id="mDiscord" onclick="showTab('discord')">💬 DISCORD</button>
+<button id="mIP" onclick="showTab('ip')">🌐 IP</button>
+</div>
+<div id="ranks" class="panel"><h3>🏆 SERVER RANKS</h3><div class="products">
+<div class="product"><div><div class="pname">OWNER</div><div class="nosale">Not for sale</div></div><button class="buy disabled" disabled>N/A</button></div>
+<div class="product"><div><div class="pname">ADMIN</div><div class="nosale">Not for sale</div></div><button class="buy disabled" disabled>N/A</button></div>
+<div class="product"><div><div class="pname">MODERATOR</div><div class="price">₹120</div></div><button class="buy" onclick="openBilling('MODERATOR',120)">BUY</button></div>
+<div class="product"><div><div class="pname">DEVELOPER</div><div class="price">₹100</div></div><button class="buy" onclick="openBilling('DEVELOPER',100)">BUY</button></div>
+<div class="product"><div><div class="pname">MEDIA</div><div class="price">₹80</div></div><button class="buy" onclick="openBilling('MEDIA',80)">BUY</button></div>
+<div class="product"><div><div class="pname">HELPER</div><div class="price">₹60</div></div><button class="buy" onclick="openBilling('HELPER',60)">BUY</button></div>
+</div></div>
+<div id="keys" class="panel hidden"><h3>🔑 CRATE KEYS</h3><div class="products">
+<div class="product"><div><div class="pname">DarkVoid KEY</div><div class="price">₹100</div></div><button class="buy" onclick="openBilling('DarkVoid KEY',100)">BUY</button></div>
+<div class="product"><div><div class="pname">OBSIDIAN KEY</div><div class="price">₹90</div></div><button class="buy" onclick="openBilling('OBSIDIAN KEY',90)">BUY</button></div>
+<div class="product"><div><div class="pname">LEGENDARY KEY</div><div class="price">₹85</div></div><button class="buy" onclick="openBilling('LEGENDARY KEY',85)">BUY</button></div>
+<div class="product"><div><div class="pname">EPIC KEY</div><div class="price">₹70</div></div><button class="buy" onclick="openBilling('EPIC KEY',70)">BUY</button></div>
+<div class="product"><div><div class="pname">PRO KEY</div><div class="price">₹60</div></div><button class="buy" onclick="openBilling('PRO KEY',60)">BUY</button></div>
+<div class="product"><div><div class="pname">NETHERITE KEY</div><div class="price">₹55</div></div><button class="buy" onclick="openBilling('NETHERITE KEY',55)">BUY</button></div>
+<div class="product"><div><div class="pname">DIAMOND KEY</div><div class="price">₹50</div></div><button class="buy" onclick="openBilling('DIAMOND KEY',50)">BUY</button></div>
+</div></div>
+<div id="discord" class="panel hidden"><div class="center"><h2>💬 JOIN DARKVOID DISCORD</h2><p>Join our community for news, updates and support.</p><button class="btn" onclick="openDiscord()">OPEN DISCORD</button></div></div>
+<div id="ip" class="panel hidden"><div class="center"><h2>🌐 SERVER IP</h2><p>Click below to copy the server address.</p><div class="ipbox" onclick="copyIP()">2DarkVoid2.play.hosting</div><br><button class="btn" onclick="copyIP()">COPY IP</button></div></div>
+</div><footer>© 2026 DarkVoid Network — Enter The Void.</footer>
+</section>
+
+<section id="billingPage" class="billing hidden"><div class="billbox">
+<h2>☠ BILLING COUNTER</h2><div id="selectedProduct" class="selected"></div>
+<label>In-game Name</label><input id="ign" type="text" placeholder="Enter your Minecraft IGN">
+<label>Payment Method</label><select id="payment"><option value="">Select payment method</option><option>UPI</option><option>Google Pay</option><option>PhonePe</option><option>Paytm</option></select>
+<button class="btn full" onclick="submitOrder()">CONTINUE</button><div id="result" class="result"></div>
+</div></section>
+
+<div id="toast" class="toast"></div>
+
+<script>
+const SERVER_IP="2DarkVoid2.play.hosting";
+const DISCORD_LINK="https://discord.gg/YgRyBamzh";
+let selectedName="",selectedPrice="";
+
+function hideAll(){document.getElementById("homePage").classList.add("hidden");document.getElementById("storePage").classList.add("hidden");document.getElementById("billingPage").classList.add("hidden")}
+function joinServer(){hideAll();document.getElementById("storePage").classList.remove("hidden");showTab("ranks");window.scrollTo(0,0)}
+function goHome(){hideAll();document.getElementById("homePage").classList.remove("hidden");window.scrollTo(0,0)}
+function showTab(tab){["ranks","keys","discord","ip"].forEach(x=>{document.getElementById(x).classList.toggle("hidden",x!==tab);document.getElementById("m"+x.charAt(0).toUpperCase()+x.slice(1)).classList.toggle("active",x===tab)})}
+function openBilling(name,price){selectedName=name;selectedPrice=price;hideAll();document.getElementById("billingPage").classList.remove("hidden");document.getElementById("selectedProduct").textContent=name+" — ₹"+price;window.scrollTo(0,0)}
+function openDiscord(){window.open(DISCORD_LINK,"_blank")}
+function copyIP(){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(SERVER_IP).then(()=>showToast("✓ Server IP copied!")).catch(fallbackCopy)}else fallbackCopy()}
+function fallbackCopy(){const t=document.createElement("textarea");t.value=SERVER_IP;document.body.appendChild(t);t.select();try{document.execCommand("copy");showToast("✓ Server IP copied!")}catch(e){showToast("IP: "+SERVER_IP)}document.body.removeChild(t)}
+function submitOrder(){const ign=document.getElementById("ign").value.trim(),pay=document.getElementById("payment").value;if(!ign){showToast("Please enter your In-game Name.");return}if(!pay){showToast("Please select a payment method.");return}const r=document.getElementById("result");r.style.display="block";r.innerHTML="✓ ORDER DETAILS RECEIVED<br><br><b>Product:</b> "+selectedName+"<br><b>Price:</b> ₹"+selectedPrice+"<br><b>IGN:</b> "+ign+"<br><b>Payment:</b> "+pay}
+function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2500)}
+</script>
+</body>
+</html>
